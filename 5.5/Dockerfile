@@ -19,8 +19,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	zip \
 	curl; exit 0
 
-RUN a2dismod mpm_event && \
-    apt-get -f install
+RUN apt-get -f install
 
 RUN a2enmod expires && \
 	a2enmod rewrite
