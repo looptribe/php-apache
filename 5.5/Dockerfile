@@ -4,7 +4,6 @@ MAINTAINER Diego Ferri <diego.ferri@looptribe.com>
 
 # Hack to install apache2-mpm-itk cleanly
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	apache2-mpm-itk \
 	libapache2-mod-php5 \
 	php5 \
 	php5-curl \
@@ -17,9 +16,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	php5-xdebug \
 	git \
 	zip \
-	curl; exit 0
-
-RUN apt-get -f install
+	curl
 
 RUN a2enmod expires && \
 	a2enmod rewrite
@@ -30,8 +27,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
-
-RUN adduser --uid 1000 app
 
 COPY web.ini /etc/php5/apache2/conf.d/90-web.ini
 COPY web.ini /etc/php5/cli/conf.d/90-web.ini
@@ -45,9 +40,11 @@ RUN curl -sS https://getcomposer.org/installer | \
 
 COPY apache2-foreground /usr/local/bin/
 
-WORKDIR /home/app/app
-VOLUME /home/app/app
-RUN chown app:app /home/app/app
+RUN usermod -u 1000 www-data
+RUN mkdir -p /var/www && chown -R www-data:www-data /var/www
+
+WORKDIR /var/www
+VOLUME /var/www
 
 EXPOSE 80
 EXPOSE 443
