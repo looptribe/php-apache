@@ -41,10 +41,10 @@ RUN curl -sS https://getcomposer.org/installer | \
 COPY apache2-foreground /usr/local/bin/
 
 RUN usermod -u 1000 www-data
-RUN mkdir -p /var/www && chown -R www-data:www-data /var/www
+RUN mkdir -p /var/www/app && chown -R www-data:www-data /var/www/app
 
-WORKDIR /var/www
-VOLUME /var/www
+WORKDIR /var/www/app
+VOLUME /var/www/app
 
 EXPOSE 80
 EXPOSE 443
