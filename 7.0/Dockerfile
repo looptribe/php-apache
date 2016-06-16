@@ -28,8 +28,8 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 
-COPY web.ini /etc/php5/apache2/conf.d/90-web.ini
-COPY web.ini /etc/php5/cli/conf.d/90-web.ini
+COPY web.ini /etc/php/7.0/apache2/conf.d/90-web.ini
+COPY web.ini /etc/php/7.0/cli/conf.d/90-web.ini
 
 RUN rm /etc/apache2/sites-enabled/*
 COPY vhost.conf /etc/apache2/sites-available/app.conf
