@@ -2,7 +2,6 @@ FROM ubuntu:14.04
 
 MAINTAINER Diego Ferri <diego.ferri@looptribe.com>
 
-# Hack to install apache2-mpm-itk cleanly
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libapache2-mod-php5 \
 	php5 \
