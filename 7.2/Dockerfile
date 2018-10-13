@@ -11,7 +11,6 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	php-gd \
 	php-intl \
 	php-mbstring \
-	php-mcrypt \
 	php-mysql \
 	php-sqlite3 \
 	php-xdebug \
